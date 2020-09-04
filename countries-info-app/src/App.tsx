@@ -1,26 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, Dispatch } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import "./app.scss";
 import { Header } from "./components/header/Header";
 import { Countries } from "./components/countries/Countries";
+import { CountryCardProps } from "./components/countryCard/CountryCard";
+import { StoreState } from "./reducers";
+import { Action, actionTypes, fetchCountries } from "./actions";
 
 function App() {
-  const [countries, setCountries] = useState<any[]>([]);
-  const logCountries = async () => {
-    const response = await axios.get("https://restcountries.eu/rest/v2/all");
-    console.log(response);
-    setCountries(response.data);
-  };
+  // const [countries, setCountries] = useState<any[]>([]);
+  const dispatch = useDispatch();
+  const { countries } = useSelector((state: StoreState) => state.countries);
   console.log(countries);
+
+  useEffect(() => {
+    dispatch(fetchCountries());
+  }, []);
 
   return (
     <div className="App">
       <Header />
-      <button onClick={logCountries}>bring</button>
-      
       <Countries countries={countries} />
     </div>
   );
 }
 
-export default App;
+export { App };

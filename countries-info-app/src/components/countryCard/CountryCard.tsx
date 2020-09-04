@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+import { Link } from "react-router-dom";
 import "./country-card.scss";
 
 export type CountryCardProps = {
@@ -18,17 +19,25 @@ export const CountryCard: FC<CountryCardProps> = ({
   population,
 }) => {
   return (
-    <div className="country-card">
-      <div
-        className="img-box"
-        style={{ backgroundImage: `url(${flag})` }}
-      ></div>
-      <div className="text-box">
-        <h2>{name}</h2>
-        <h2>{population}</h2>
-        <h2>{region}</h2>
-        <h2>{capital}</h2>
+    <Link to="/1">
+      <div className="country-card">
+        <div
+          className="img-box"
+          style={{ backgroundImage: `url(${flag})` }}
+        ></div>
+        <div className="text-box">
+          <h3>{name}</h3>
+          <p>
+            population: <span>{population}</span>
+          </p>
+          <p>
+            region: <span>{region}</span>
+          </p>
+          <p>
+            capital: <span>{capital}</span>
+          </p>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 };
