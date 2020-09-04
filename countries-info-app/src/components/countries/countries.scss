@@ -1,0 +1,13 @@
+.countries-container {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-very-light-gray-light-mode);
+}
+
+.countries {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
+  grid-gap: 6rem;
+  padding: 1rem 5rem;
+}
